@@ -31,6 +31,9 @@ class UsersController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
+        // 注册之后自动登录
+        Auth::login($user);
+
         session()->flash('success', '注册成功,欢迎来到LaraSNS!');
 
         return redirect()->route('users.show', [$user]);
